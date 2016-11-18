@@ -2,3 +2,15 @@
 stroke: #777;
 stroke-width: 2px;
 }
+
+body {
+background-color: white;
+}
+
+.flag {
+position: absolute;
+}
+
+#flagbox {
+position: absolute;
+}

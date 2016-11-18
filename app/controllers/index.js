@@ -8,8 +8,8 @@ var margins = {
 "right":5
 }
 
-var height = 500 - margins.top - margins.bottom
-var width = 500 - margins.left - margins.right
+var height = 700 - margins.top - margins.bottom
+var width = 700 - margins.left - margins.right
 
 //Set box and svg dimensions
 
@@ -26,6 +26,8 @@ var draw = function(nodes, links){
 //Start Simulation
 var simulation = d3.forceSimulation(nodes)
 simulation.force("link", d3.forceLink(links))
+simulation.force("center", d3.forceCenter(height/2, width/2))
+simulation.force("manybody", d3.forceManyBody().strength(-10))
 
 
 //Map Links and Nodes to SVG
@@ -37,18 +39,22 @@ var link = svg.selectAll('.link')
 .enter().append('line')
 .attr('class', 'link')
 
-var node = svg.selectAll('.node')
+//I can't see it because it's in html, this is svg
+
+var flagbox = d3.select("#flagbox")
+
+var node = flagbox.selectAll('.node')
 .data(nodes)
-.enter().append('circle')
-.attr('class', 'node')
+.enter().append('img')
+.attr('class', d => 'flag flag-' + d.code)
 
 //Paint on a turn of the simulation
 
 simulation.on('end', function() {
 
-node.attr('r', radius)
-.attr('cx', function(d) {return d.x})
-.attr('cy', function(d) {return d.y})
+node
+.style('left', d => d.x + "px")
+.style('top', d => d.y + "px")
 
 //Source property?
 link.attr('x1', function(d) { return d.source.x; })
@@ -68,8 +74,6 @@ return simulation
 d3.json(url, function(data){
 
 var nodes = data.nodes
-console.log(nodes[4])
 var links = data.links
-console.log(links[3])
 draw(nodes, links)
 })
