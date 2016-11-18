@@ -17,7 +17,17 @@ d3.select(".box")
 .attr("height", height + margins.top + margins.bottom)
 .attr("width", width + margins.left + margins.right)
 
+
 d3.select("#chart")
+.attr("height", height + margins.top + margins.bottom)
+.attr("width", width + margins.left + margins.right)
+
+
+d3.select("#flagbox")
+.attr("height", height + margins.top + margins.bottom)
+.attr("width", width + margins.left + margins.right)
+
+d3.select("#graph")
 .attr("height", height + margins.top + margins.bottom)
 .attr("width", width + margins.left + margins.right)
 

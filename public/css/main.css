@@ -11,6 +11,10 @@ background-color: white;
 position: absolute;
 }
 
-#flagbox {
+#chart {
 position: absolute;
+}
+
+#flagbox {
+position: relative;
 }
