@@ -32,8 +32,11 @@ var draw = function(nodes, links){
 var simulation = d3.forceSimulation(nodes)
 simulation.force("link", d3.forceLink(links))
 simulation.force("center", d3.forceCenter(height/2, width/2))
-simulation.force("manybody", d3.forceManyBody().strength(-10))
-
+simulation.force("manybody", d3.forceManyBody().strength(-90))
+simulation.force("x1", d3.forceX().strength(.1).x(400))
+simulation.force("y1", d3.forceY().strength(.1).y(400))
+simulation.force("x2", d3.forceX().strength(.1).x(200))
+simulation.force("y2", d3.forceY().strength(.1).y(200))
 
 //Map Links and Nodes to SVG
 
