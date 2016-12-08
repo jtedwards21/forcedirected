@@ -13,11 +13,6 @@ var width = 700 - margins.left - margins.right
 
 //Set box and svg dimensions
 
-d3.select(".box")
-.attr("height", height + margins.top + margins.bottom)
-.attr("width", width + margins.left + margins.right)
-
-
 d3.select("#chart")
 .attr("height", height + margins.top + margins.bottom)
 .attr("width", width + margins.left + margins.right)

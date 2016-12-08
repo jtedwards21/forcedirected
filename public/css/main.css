@@ -3,8 +3,27 @@ stroke: #777;
 stroke-width: 2px;
 }
 
+.graph-title {
+text-align: center;
+}
+
+.graph-subtitle {
+text-align: center;
+}
+
+#background {
+background-image: url(../img/world-map.jpg);
+width: 100vw;
+height: 100vh;
+position: absolute;
+background-size: 100% 100%;
+background-repeat: no-repeat;
+background-position: center;
+z-index: -1;
+}
+
 body {
-background-color: white;
+margin: 0 auto;
 }
 
 .flag {
@@ -17,4 +36,16 @@ position: absolute;
 
 #flagbox {
 position: relative;
+}
+
+.box {
+z-index: 3;
+width: 1000px;
+height: 800px;
+margin-left: auto;
+margin-right: auto;
+float: none;
+margin-top: 50px;
+background-color: rgba(0,0,0,.3);
+border-radius: 16px;
 }
