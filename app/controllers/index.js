@@ -1,4 +1,4 @@
-var url = "https://raw.githubusercontent.com/DealPete/forceDirected/master/countries.json"
+var url = "public/data/countries.json"
 var radius = 5
 
 var margins = {
@@ -24,7 +24,7 @@ d3.select("#flagbox")
 
 d3.select("#graph")
 .attr("height", height + margins.top + margins.bottom)
-.attr("width", width + margins.left + margins.right)
+.attr("width", width + margins.left + margins.right);
 
 var draw = function(nodes, links){
 
@@ -46,6 +46,8 @@ var link = svg.selectAll('.link')
 .data(links)
 .enter().append('line')
 .attr('class', 'link')
+.style("opacity", "1")
+
 
 //I can't see it because it's in html, this is svg
 
@@ -55,22 +57,30 @@ var node = flagbox.selectAll('.node')
 .data(nodes)
 .enter().append('img')
 .attr('class', d => 'flag flag-' + d.code)
+.style("opacity", "0")
+
 
 //Paint on a turn of the simulation
 
 simulation.on('end', function() {
 
 node
+.transition()
+.style("opacity", "1")
 .style('left', d => d.x + "px")
 .style('top', d => d.y + "px")
+.duration(1000);
 
 //Source property?
-link.attr('x1', function(d) { return d.source.x; })
+link.transition().attr('x1', function(d) { return d.source.x; })
 .attr('y1', function(d) { return d.source.y; })
 .attr('x2', function(d) { return d.target.x; })
-.attr('y2', function(d) { return d.target.y; });
+.attr('y2', function(d) { return d.target.y; })
+.duration(1000);
 
 })
+
+
  
 return simulation
 
@@ -84,4 +94,6 @@ d3.json(url, function(data){
 var nodes = data.nodes
 var links = data.links
 draw(nodes, links)
+
+
 })
